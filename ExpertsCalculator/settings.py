@@ -125,3 +125,24 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 WSGI_APPLICATION = 'ExpertsCalculator.wsgi.application'
+
+
+if DEBUG:
+    LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+    'file': {
+    'level': 'DEBUG',
+    'class': 'logging.FileHandler',
+    'filename': 'debug.log',
+    },
+    },
+    'loggers': {
+    'django': {
+    'handlers': ['file'],
+    'level': 'DEBUG',
+    'propagate': True,
+    },
+    },
+}
