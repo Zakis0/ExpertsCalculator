@@ -25,7 +25,7 @@ SECRET_KEY = 'u0wll-6&@5^k=d$5#om!ls53i=qp3oyvub2p5o8!%^tr*gv35c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["expertscalculator.herokuapp.com"]
+ALLOWED_HOSTS = ["expertscalculator.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -123,4 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static'
 WSGI_APPLICATION = 'ExpertsCalculator.wsgi.application'
