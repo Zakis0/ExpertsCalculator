@@ -1,0 +1,72 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-12">
+				<select id="Operations" class="SelectList" onchange="CountScore()">
+					<option value="Duplexity">Дуплексность</option>
+					<option value="ForlornHope">Угасшая Надежда</option>
+					<option value="MassiveAttack">Массированная Атака</option>
+					<option value="DeepCut">Глубокий Порез</option>
+					<option value="DeadEnd">Тупик</option>
+					<option value="CurtainCall">Тревожный Звоночек</option>
+					<option value="ChokePoint">Стратегическая Точка</option>
+					<option value="Stronghold">Бастион</option>
+					<option value="Foxtrot">Фокстрот</option>
+					<option value="Tinderbox">Пороховая Бочка</option>
+					<option value="Bottleneck">Бутылочное Горлышко</option>
+					<option value="SourGrapes">Кислый Виноград</option>
+					<option value="Mambo">Мамба</option>
+					<option value="PowderKeg">Бочонок Пыльцы</option>
+					<option value="UpperLip">Верхняя Губа</option>
+					<option value="Hacksaw">Ножовка</option>
+					<option value="TankTango">Танго на Танке</option>
+					<option value="TickerTape">Конфетти</option>
+					<option value="Charleston">Чарльстон</option>
+					<option value="Pencilneck">Тонкая Шейка</option>
+					<option value="FullMonty">Разгул</option>
+					<option value="VenusFlytrap">Венерина Мухоловка</option>
+					<option value="EarlyBird">Ранняя Пташка</option>
+					<option value="MilkRun">Простое Задание</option>
+				</select>
+			</div>
+			<div class="col-md-6 col-12">
+				<div class="field ScoreInput">
+					<img src="{% static 'main/img/Icons/ForcePoint.png' %}" alt="Force Point">
+					<input id="TotalScore" type="number" oninput="CountScore()" value="0" min="0" max="80000">
+				</div>
+			</div>
+			<div class="col-md-6 col-8">
+				<div class="ScoreBtnBlock">
+					<button id="DownloadExcelBtn" class="btn ScoreBtn CreateExcel" type="button" onclick="DownloadExcel()">Скачать таблицу в Excel</button>
+				</div>
+			</div>
+			<div class="col-md-6 col-4">
+				<div class="ScoreBtnBlock">
+					<button class="btn ScoreBtn ScoreClearBtn" type="button" onclick="ScoreClear()">Очистить</button>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="field Res">
+					<div class="text">
+						<p id="ScoreResField">
+							Максимальные очки (X) через N дней</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div id="TableBlock" class="Table">
+					<table id="ScoreTable"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block import %}
+	<script type="text/javascript" src="{% static 'main/js/Modules/Days.js' %}"></script>
+	<script type="text/javascript" src="{% static 'main/js/Score.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,448 @@
+@bgc-main: #85C4E1;
+@bgc-2: #48B3DA;
+@bgc-3: #19517E;
+@bgc-2-dark: #3B92B2;
+@bgc-3-dark: #143F62;
+@block-text: #E7DB74;
+@text: #19517E;
+@text-border: #A47CFC;
+@table-border: black;
+
+.border() {border: 1px solid red;}
+// .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {.border();}
+
+html {
+	font-size: 10px;
+	overflow-x:  hidden;
+}
+
+body {
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+	color: @block-text;
+	font-size: 2rem;
+}
+
+header {
+	padding-bottom: 1rem;
+	background: @bgc-3;
+}
+
+main {
+	padding: 3rem 0;
+	background: @bgc-main;
+	background: -webkit-linear-gradient(to bottom, @bgc-main, @text);
+	background: linear-gradient(to bottom, @bgc-main, @text);
+	height: 100%;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+input, select {outline:none;}
+
+.header {
+	padding-top: 1rem;
+	text-align: center;
+	&-title {
+		color: @block-text;
+		font-weight: 900;
+		padding-top: 1rem;
+		font-size: 7.5rem;
+		& a {
+			color: @block-text;
+			&:hover {
+				color: darken(@block-text, 20%);
+			}
+		}
+	}
+	&-img {
+		&-left {
+			position: absolute;
+			top: 1rem;
+			left: 0;
+			width: 12rem;
+		}
+		&-right {
+			position: absolute;
+			top: 1rem;
+			width: 20rem;
+			right: 0;
+		}
+	}
+}
+
+.Expert1 {display: none;}
+.Expert2 {display: block;}
+
+.btn {
+	border: 0px solid black;
+	border-radius: 2rem;
+	padding: 1rem;
+	font-size: 5rem;
+	text-align: center;
+	color: @block-text;
+	background: @bgc-2;
+	background: -webkit-linear-gradient(to bottom, @bgc-2, @bgc-3);
+	background: linear-gradient(to bottom, @bgc-2, @bgc-3);
+	&:hover {
+		color: darken(@block-text, 10%);
+		background: @bgc-2-dark;
+		background: -webkit-linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
+		background: linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
+	}
+}
+
+.button {
+	&-link {
+	margin-top: 2rem;
+	padding-bottom: 1rem;
+	text-align: center;
+	}
+	&-click {
+		text-align: center;
+		margin-bottom: 5rem;
+	}
+}
+
+.MainPage {
+	a {
+		color: @block-text;
+		&:hover {
+			color: darken(@block-text, 20%);
+		}
+	}
+	h1 {
+		font-size: 5rem;
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+}
+
+.field {
+	margin-bottom: 0;
+	text-align: left;
+	p {
+		text-align: left;
+		display: inline-block;
+		color: @text;
+		background-color: @bgc-2;
+		border: 0.5rem solid @bgc-3;
+		border-radius: 2rem;
+		padding: 0 0 0.2rem 1rem;
+	}
+	img {
+		width: 8rem;
+		padding: 0 1rem 4.5rem 0;
+	}
+	input {
+		color: @block-text;
+		background-color: @bgc-3;
+		border-radius: 2rem;
+		border: 0px solid black;
+		width: 15rem;
+		font-size: 7rem;
+		margin-bottom: 2rem;
+		
+	}
+	#EnergyResField {
+			width: 27rem;
+			font-size: 2.15rem;
+		}
+	#DamageResField {
+			width: 48rem;
+			font-size: 3rem;
+			margin-bottom: 3rem;
+		}
+	.BigImg {width: 5.1rem;}
+	#BaseHealth {width: 28rem;}
+	#BuildingHealthBoost, #Shield {width: 19.5rem;}
+}
+
+.ResDamage {
+	text-align: center;
+}
+
+.block {
+	margin-top: 2rem;
+	display: inline-block;
+	width: 15rem;
+	height: 16rem;
+	background-color: @bgc-3;
+	border-radius: 2rem;
+	padding-top: 1rem;
+	text-align: center;
+	&-text {
+		color: @block-text;
+		padding-top: 1rem;
+		&-cost {
+			padding-left: 1rem;
+			text-align: right;
+		}
+	}
+	&-click {
+		top: 2rem;
+		position: absolute;
+		&-left {
+			left: 1.5rem;
+		}
+		&-right {
+			right: 2.3rem;
+		}
+	}
+}
+
+.select {
+	text-align: right;
+	button {
+			border-radius: 1rem;
+			height: 10.7rem;
+			width: 10.7rem;
+			margin-right: 2rem;
+			padding: 0;
+		img {border-radius: 1rem;}
+	}
+	#SelectedTroop {
+		height: 10.7rem;
+		width: 10.7rem;
+	}
+	&-content {
+		width: 51rem;
+		margin-top: 1rem;
+		position: absolute;
+		z-index: 1;
+		border-radius: 2rem;
+		background: @bgc-2;
+		background: -webkit-linear-gradient(to bottom, @bgc-2, @bgc-3);
+		background: linear-gradient(to bottom, @bgc-2, @bgc-3);
+		.block {
+			margin: 1rem 0 1rem 0;
+			border-radius: 1rem;
+			height: 9rem;
+			width: 9rem;
+			&-img {
+				img {
+					position: absolute;
+					top: 1rem;
+					left: 2.3rem;
+					width: 9rem;
+					height: 9rem;
+					border-radius: 1rem;
+				}
+			}
+		}
+	}
+}
+
+.LessResField {
+	font-size: 3rem;
+	width: 48rem;
+}
+
+#LessEnergyResField {padding: 0.7rem 0 0.7rem 1rem;}
+#LessHealthField {margin-top: 1.1rem;}
+#LessDamageResField {margin-bottom: 3rem;}
+
+.LessDamage {margin-top: 3rem;}
+.LessGunboatLevel {text-align: right;}
+
+.SelectList {
+	width: 49rem;
+	height: 10.7rem;
+	color: @block-text;
+	font-size: 4rem;
+	border-radius: 2rem;
+	padding: 1rem;
+	background: @bgc-3;
+	border: none;
+}
+
+.ScoreInput {text-align: center;}
+#DownloadExcelBtnLink {color: @block-text;}
+
+#TotalScore {width: 24rem;}
+
+#ScoreResField {
+	margin: 4rem 0 2rem 0;
+	font-size: 4rem;
+	padding: 1rem;
+}
+
+.text {text-align: center;}
+
+.ScoreBtnBlock {text-align: center;}
+.ScoreBtn {font-size: 3.7rem;}
+
+.Table {
+	font-size: 4rem;
+	overflow: auto;
+	height: 40rem;
+	background: @bgc-2;
+	background: -webkit-linear-gradient(to bottom, @bgc-2, @bgc-3);
+	background: linear-gradient(to bottom, @bgc-2, @bgc-3);
+	table {
+		width: 100%;
+		td {
+			padding-left: 3rem;
+			border: 1px solid @table-border;
+		}
+	}
+}
+
+.hidden {display: none;}
+
+.Green {
+	background-color: green;
+	border-radius: 2rem;
+	opacity: 0.2;
+}
+.Red {
+	background-color: red;
+	border-radius: 2rem;
+	opacity: 0.2;
+}
+
+
+@media (min-width: 1199px) {
+	.CreateExcel{margin-right: 5rem;}
+	
+}
+
+@media (max-width: 1199px) {
+	.Expert1 {display: block;}
+	.Expert2 {display: none;}
+}
+
+@media (max-width: 1500px) {
+	.header {
+		&-img {
+			&-left {display: none;}
+			&-right {display: none;}
+		}
+	}
+}
+
+@media (max-width: 1199px) {
+	.Res {text-align: center;}
+	.block {
+		margin-left: 4rem;
+		&-click {
+			&-left {left: 5.5rem;}
+			&-right {right: 3.2rem;}
+		}
+	}
+	.select {button {margin-right: 5.5rem;}}
+	
+}
+
+@media (max-width: 1199px) {
+	@media (min-width: 992px) {
+		.LessResField {
+			font-size: 2.5rem;
+			width: 40rem;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.top-btn {margin-top: 4rem;}
+}
+
+@media (max-width: 991px) {
+	.select button {margin-right: 9.5rem;}
+	#LessDamageResField {margin-top: 1rem;}
+	.button-click-max {margin-left: 8rem;}
+	.button-click-clear {margin-right: 7rem;}
+	.ScoreBtn {font-size: 2.6rem;}
+	#ScoreResField {font-size: 3rem;}
+	.SelectList {
+		font-size: 2.5rem;
+		width: 33rem;
+	}
+}
+
+@media (min-width: 767px) {
+.ScoreClearBtn {margin-left: 9rem;}
+}
+
+@media (max-width: 767px) {
+	.block {
+		&-click {
+			&-right {right: 6.2rem;}
+		}
+	}
+	.btn{font-size: 3rem;}
+	.field {
+		#BuildingHealthBoost, #Shield {
+			width: 15rem;
+			font-size: 5rem;
+		}
+	}
+	.select button {margin-right: 0.5rem;}
+	.button-click-max {margin-left: -7rem;}
+	.button-click-clear {margin-right: 7rem;}
+	#ScoreResField {font-size: 2.2rem;}
+	.ScoreBtn {font-size: 2.6rem;}
+	.ScoreInput {
+		text-align: left;
+		margin-top: 2rem;
+	}
+	.Table {font-size: 3rem;}
+}
+
+@media (max-width: 767px) {
+	@media (min-width: 576px) {
+	.button-click {margin-left: 7.5rem;}}
+	.top-btn {margin-left: 6.5rem;}
+}
+
+@media (max-width: 575px) {
+	.field {
+		p {
+			width: 20rem;
+			font-size: 1.55rem;
+			border: 0.3rem solid @bgc-3;
+		}
+		img {width: 6rem;}
+		input {
+			width: 12rem;
+			font-size: 5rem;
+		}
+	}
+	.select-content .block-img img {left: 1.5rem;}
+	.select {
+		text-align: left;
+		button {
+			margin-left: 6.6rem;
+			height: 7.7rem;
+			width: 7.7rem;
+			padding: 0;
+		}
+		#SelectedTroop {
+			border-radius: 1.6rem;
+			height: 8.7rem;
+			width: 7.7rem;
+			padding-bottom: 1rem;
+		}
+	}
+	#Shield {
+		width: 14rem;
+		font-size: 4.8rem;
+	}
+	.Res .LessResField {
+		font-size: 3rem;
+		width: 48rem;
+	}
+	#TotalScore {
+		font-size: 7rem;
+		margin-left: 2.3rem;
+	}
+	#ScoreResField {width: 100%;}
+	.Table table td {padding-left: 1rem;}
+}

@@ -1,0 +1,730 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/Gunboat.png' %}" alt="Gunboat">
+					<input id="GunboatLevel" type="number" oninput="СountEnergy()" value="1" min="1" max="30">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img height="120" src="{% static 'main/img/Icons/Enegry.png' %}" alt="Energy Boost">
+					<input id="EnergyBoost" type="number" oninput="СountEnergy()" value="0" min="0" max="900">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/PowerCell.png' %}" alt="Destroyed Buildings">
+					<input id="DestroyedBuildings" type="number" oninput="СountEnergy()" value="0" min="0" max="200">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-12 col-6">
+				<div class="field Res">
+					<div class="text">
+						<p id="EnergyResField">
+							Затраты заряда: 0<br>
+							Ваш заряд: 12<br>
+							Заряда хватает
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-6">
+				<div class="button-click">
+					<button class="btn" type="button" onclick="MaxEnergy()">MAX</button>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="button-click">
+					<button class="btn" type="button" onclick="ClearEnergy()">Очистить</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Gunboat/Artillery.png' %}" alt="Artillery">
+						<img id="ArtilleryActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ArtilleryNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ArtilleryNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ArtilleryNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ArtilleryEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="103" src="{% static 'main/img/Gunboat/Flare.png' %}" alt="Flare">
+						<img id="FlareActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img id="ArtilleryActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(FlareNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(FlareNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="FlareNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="FlareEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="110" src="{% static 'main/img/Gunboat/Medkit.png' %}" alt="Medkit">
+						<img id="MedkitActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(MedkitNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(MedkitNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="MedkitNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="MedkitEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Gunboat/Shock.png' %}" alt="Shock">
+						<img id="ShockActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ShockNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ShockNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ShockNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ShockEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Gunboat/Barrage.png' %}" alt="Barrage">
+						<img id="BarrageActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(BarrageNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(BarrageNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="BarrageNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="BarrageEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Gunboat/Smoke.png' %}" alt="Smoke">
+						<img id="SmokeActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(SmokeNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(SmokeNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="SmokeNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="SmokeEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Gunboat/Critters.png' %}" alt="Critters">
+						<img id="CrittersActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(CrittersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(CrittersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="CrittersNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="CrittersEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/ClusterGrenade.png' %}" alt="Cluster Grenade">
+						<img id="ClusterGrenadeActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ClusterGrenadeNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ClusterGrenadeNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ClusterGrenadeNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ClusterGrenadeEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="97" src="{% static 'main/img/Skills/IronWill.png' %}" alt="Iron Will">
+						<img id="IronWillActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(IronWillNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(IronWillNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="IronWillNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="IronWillEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/BattleOrders.png' %}" alt="Battle Orders">
+						<img id="BattleOrdersActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(BattleOrdersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(BattleOrdersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="BattleOrdersNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="BattleOrdersEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/CrystalCritters.png' %}" alt="Crystal Critters">
+						<img id="CrystalCrittersActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(CrystalCrittersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(CrystalCrittersNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="CrystalCrittersNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="CrystalCrittersEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="80" src="{% static 'main/img/Skills/IceShields.png' %}" alt="Ice Shields">
+						<img id="IceShieldsActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(IceShieldsNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(IceShieldsNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="IceShieldsNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="IceShieldsEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/SecondWind.png' %}" alt="Second Wind">
+						<img id="SecondWindActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(SecondWindNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(SecondWindNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="SecondWindNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="SecondWindEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/CritterSwarm.png' %}" alt="Critter Swarm">
+						<img id="CritterSwarmActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(CritterSwarmNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(CritterSwarmNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="CritterSwarmNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="CritterSwarmEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/ExplosiveCharges.png' %}" alt="Explosive Charges">
+						<img id="ExplosiveChargesActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ExplosiveChargesNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ExplosiveChargesNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ExplosiveChargesNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ExplosiveChargesEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="85" src="{% static 'main/img/Skills/UniversalRemote.png' %}" alt="Universal Remote">
+						<img id="UniversalRemoteActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(UniversalRemoteNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(UniversalRemoteNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="UniversalRemoteNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="UniversalRemoteEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Skills/Taunt.png' %}" alt="Taunt">
+						<img id="TauntActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(TauntNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(TauntNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="TauntNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="TauntEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="66" src="{% static 'main/img/Skills/EnergyDrink.png' %}" alt="Energy Drink">
+						<img id="EnergyDrinkActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(EnergyDrinkNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(EnergyDrinkNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="EnergyDrinkNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="EnergyDrinkEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="101" src="{% static 'main/img/Skills/ShockKnuckles.png' %}" alt="Shock Knuckles">
+						<img id="ShockKnucklesActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ShockKnucklesNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ShockKnucklesNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ShockKnucklesNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ShockKnucklesEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="115" src="{% static 'main/img/Troops/Tank.png' %}" alt="Tank">
+						<img id="TankActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(TankNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(TankNum, 1)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="TankNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="TankEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Troops/Scorcher.png' %}" alt="Scorcher">
+						<img id="ScorcherActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(ScorcherNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(ScorcherNum, 2)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="ScorcherNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="ScorcherEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="110" src="{% static 'main/img/Troops/Bombardier.png' %}" alt="Bombardier">
+						<img id="BombardierActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(BombardierNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(BombardierNum, 3)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="BombardierNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="BombardierEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="103" src="{% static 'main/img/Troops/Mech.png' %}" alt="Mech">
+						<img id="MechActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(MechNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(MechNum, 4)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="MechNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="MechEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="135" src="{% static 'main/img/Troops/RocketChoppa.png' %}" alt="Rocket Choppa">
+						<img id="RocketChoppaActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(RocketChoppaNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(RocketChoppaNum, 5)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="RocketChoppaNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="RocketChoppaEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Troops/HeavyChoppa.png' %}" alt="Heavy Choppa">
+						<img id="HeavyChoppaActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(HeavyChoppaNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(HeavyChoppaNum, 6)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="HeavyChoppaNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="HeavyChoppaEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="120" src="{% static 'main/img/Troops/Lazortron.png' %}" alt="Lazortron">
+						<img id="LazortronActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(LazortronNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(LazortronNum, 7)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="LazortronNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="LazortronEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="100" src="{% static 'main/img/Troops/RainMaker.png' %}" alt="Rain Maker">
+						<img id="RainMakerActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(RainMakerNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(RainMakerNum, 8)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="RainMakerNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="RainMakerEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 col-lg-3 col-md-4 col-6">
+				<div class="block">
+					<div class="block-img">
+						<img width="108" src="{% static 'main/img/Troops/CritterCannon.png' %}" alt="Critter Cannon">
+						<img id="CritterCannonActiv" class="block-click block-click-left" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+						<img class="block-click block-click-left" onclick="Minus(CritterCannonNum)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+						<img class="block-click block-click-right" onclick="Plus(CritterCannonNum, 9)" src="{% static 'main/img/Icons/Click.png' %}" alt="Click">
+					</div>
+					<div class="block-text">
+						<div class="row">
+							<div class="col-1 offset-1">
+								<div class="block-text-num">
+									<span id="CritterCannonNum">X0</span>
+								</div>
+							</div>
+							<div class="col-6 offset-1">
+								<div class="block-text-cost">
+									<span id="CritterCannonEnd">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block import %}
+	<script type="text/javascript" src="{% static 'main/js/Energy.js' %}"></script>
+{% endblock %}

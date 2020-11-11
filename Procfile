@@ -1,0 +1,1 @@
+web: gunicorn ExpertsCalculator.wsgi --log-file -

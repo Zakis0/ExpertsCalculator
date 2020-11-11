@@ -1,0 +1,239 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-12">
+				<div class="field Res ResDamage">
+					<p id="DamageResField">
+						Скорость атаки: 0<br>
+						Урон за залп: 0<br>
+						Урон в секунду: 0<br>
+						Урон за 0 с: 0<br>
+						Здоровье базы: 10 000<br>
+						Урона не хватает<br>
+						Затраты заряда: 0
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-12">
+				<div class="row">
+					<div class="col-lg-12 col-6">
+						<div class="button-click">
+							<button class="btn top-btn" type="button" onclick="MaxDamage()">MAX</button>
+						</div>
+					</div>
+					<div class="col-lg-12 col-6">
+						<div class="button-click">
+							<button class="btn" type="button" onclick="ClearDamage()">Очистить</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-3 col-lg-4 col-6">
+			  	<div class="select">
+			  		<div id="Troop" class="TroopZooka"></div>
+			  		<button id="TroopsBtn" class="select-button btn" type="button"><img id="SelectedTroop" src="{% static 'main/img/Troops/ZookaIcon.png' %}" alt="Войска"></button>
+			  		<div id="TroopsSelect" class="select-content hidden">
+			  			<div class="container">
+				  			<div class="row">
+				  				<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/ZookaIcon.png' %}" alt="Zooka">
+											<img id="TroopZooka" class="Green" onclick="SelectTroop(TroopZooka)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/WarriorIcon.png' %}" alt="Warrior">
+											<img id="TroopWarrior" onclick="SelectTroop(TroopWarrior)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/BombardierIcon.png' %}" alt="Bombardier">
+											<img id="TroopBombardier" onclick="SelectTroop(TroopBombardier)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/TankIcon.png' %}" alt="Tank">
+											<img id="TroopTank" onclick="SelectTroop(TroopTank)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/GrenadierIcon.png' %}" alt="Grenadier">
+											<img id="TroopGrenadier" onclick="SelectTroop(TroopGrenadier)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/RiflemanIcon.png' %}" alt="Rifleman">
+											<img id="TroopRifleman" onclick="SelectTroop(TroopRifleman)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/HeavyIcon.png' %}" alt="Heavy">
+											<img id="TroopHeavy" onclick="SelectTroop(TroopHeavy)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/MechIcon.png' %}" alt="Mech">
+											<img id="TroopMech" onclick="SelectTroop(TroopMech)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/ScorcherIcon.png' %}" alt="Scorcher">
+											<img id="TroopScorcher" onclick="SelectTroop(TroopScorcher)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/CryoneerIcon.png' %}" alt="Cryoneer">
+											<img id="TroopCryoneer" onclick="SelectTroop(TroopCryoneer)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="block">
+										<div class="block-img">
+											<img src="{% static 'main/img/Troops/Critters.png' %}" alt="Critter">
+											<img id="TroopCritter" onclick="SelectTroop(TroopCritter)" src="{% static 'main/img/Icons/Activ.png' %}" alt="Activ.png">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img id="asd" src="{% static 'main/img/Icons/Level.png' %}" alt="Troops Level">
+					<input id="TroopsLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/Troops.png' %}" alt="Troops Num">
+					<input id="TroopsNum" type="number" oninput="CountDamage()" value="0" min="0" max="500">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/Clock.png' %}" alt="Shock Time">
+					<input id="ShockTime" type="number" oninput="CountDamage()" value="0" min="0" max="240">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/Damage.png' %}" alt="Damage Boost">
+					<input id="DamageBoost" type="number" oninput="CountDamage()" value="0" min="0" max="900">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/Speed.png' %}" alt="Speed Boost">
+					<input id="SpeedBoost" type="number" oninput="CountDamage()" value="0" min="-75" max="900">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/BattleOrdersLevel.png' %}" alt="Battle Orders Level">
+					<input id="BattleOrdersLevel" type="number" oninput="CountDamage()" value="1" min="1" max="10">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-8 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/BattleOrdersNum.png' %}" alt="Battle Orders Num">
+					<input id="BattleOrdersNum" type="number" oninput="CountDamage()" value="0" min="0" max="32">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/ArtilleryNum.png' %}" alt="Artillery Num">
+					<input id="ArtilleryNum" type="number" oninput="CountDamage()" value="0" min="0" max="30">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/ArtilleryLevel.png' %}" alt="Artillery Level">
+					<input id="ArtilleryLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/ArtilleryBoost.png' %}" alt="Artillery Boost">
+					<input id="ArtilleryBoost" type="number" oninput="CountDamage()" value="0" min="0" max="900">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/BarrageNum.png' %}" alt="BarrageNum">
+					<input id="BarrageNum" type="number" oninput="CountDamage()" value="0" min="0" max="30">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/BarrageLevel.png' %}" alt="Barrage Level">
+					<input id="BarrageLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-4 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/BarrageBoost.png' %}" alt="BarrageBoost">
+					<input id="BarrageBoost" type="number" oninput="CountDamage()" value="0" min="0" max="200">
+				</div>
+			</div>
+			<div class="col-xl-5 col-12">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/PowerCore.png' %}" alt="Base Health">
+					<input id="BaseHealth" type="number" oninput="CountDamage()" step="1000" value="10000" min="10000" max="300000">
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-4 col-6">
+				<div class="field">
+					<img class="BigImg" src="{% static 'main/img/Icons/Health.png' %}" alt="Building Health Boost">
+					<input id="BuildingHealthBoost" class="BigIuput" type="number" oninput="CountDamage()" value="0" min="0" max="9900">
+				</div>
+			</div>
+			<div class="col-xl-4 col-lg-8 col-6">
+				<div class="field">
+					<img src="{% static 'main/img/Icons/ShieldGenerator.png' %}" alt="Shield">
+					<input id="Shield" class="BigIuput" type="number" oninput="CountDamage()" step="50" value="0" min="0" max="9900">
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block import %}
+	<script type="text/javascript" src="{% static 'main/js/Damage.js' %}"></script>
+{% endblock %}

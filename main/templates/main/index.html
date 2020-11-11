@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+	<div class="container">
+		<div class="MainPage">
+			<h1><a href="https://vk.com/top_boom_beach">Экспертный подход к Boom Beach</a></h1>
+			<video autoplay autobuffer controls>
+				<source src="{% static 'main/video/Expert.mp4' %}">
+			</video>
+		</div>
+	</div>
+{% endblock %}
