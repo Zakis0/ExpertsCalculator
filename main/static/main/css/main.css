@@ -1,14 +1,14 @@
 html {
   font-size: 10px;
   overflow-x: hidden;
-  background: #85c4e1;
-  background: -webkit-gradient(linear, left top, left bottom, from(#85c4e1), to(#19517e));
-  background: linear-gradient(to bottom, #85c4e1, #19517e);
 }
 body {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   color: #e7db74;
   font-size: 2rem;
+  background: #85c4e1;
+  background: -webkit-gradient(linear, left top, left bottom, from(#85c4e1), to(#19517e));
+  background: linear-gradient(to bottom, #85c4e1, #19517e);
 }
 header {
   padding-bottom: 1rem;
