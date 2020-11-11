@@ -92,6 +92,9 @@ select {
   text-align: center;
   margin-bottom: 5rem;
 }
+.MainPage {
+  height: 60vh;
+}
 .MainPage a {
   color: #e7db74;
 }
