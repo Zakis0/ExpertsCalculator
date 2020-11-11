@@ -3,7 +3,7 @@ html {
   overflow-x: hidden;
 }
 body {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: "Comic Sans MS", "Comic Sans", sans-serif;
   color: #e7db74;
   font-size: 2rem;
   background: #85c4e1;
