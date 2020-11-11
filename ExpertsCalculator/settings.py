@@ -129,20 +129,20 @@ WSGI_APPLICATION = 'ExpertsCalculator.wsgi.application'
 
 if DEBUG:
     LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-    'file': {
-    'level': 'DEBUG',
-    'class': 'logging.FileHandler',
-    'filename': 'debug.log',
-    },
-    },
-    'loggers': {
-    'django': {
-    'handlers': ['file'],
-    'level': 'DEBUG',
-    'propagate': True,
-    },
-    },
-}
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': 'debug.log',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }
