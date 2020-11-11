@@ -20,6 +20,9 @@ body {
 	font-family: "Comic Sans MS", "Comic Sans", cursive;
 	color: @block-text;
 	font-size: 2rem;
+	background: @bgc-main;
+	background: -webkit-linear-gradient(to bottom, @bgc-main, @text);
+	background: linear-gradient(to bottom, @bgc-main, @text);
 }
 
 header {
@@ -29,9 +32,6 @@ header {
 
 main {
 	padding: 3rem 0;
-	background: @bgc-main;
-	background: -webkit-linear-gradient(to bottom, @bgc-main, @text);
-	background: linear-gradient(to bottom, @bgc-main, @text);
 	height: 100%;
 }
 
