@@ -33,7 +33,7 @@ function CountScore() {
     var ExcelText = "День;До сброса;После сброса"
     var YesterdayScore = TotalScore;
     var Day = 0;
-
+    console.log(MaxOperationScore)
     switch (Operation) {
         case "Duplexity": var OperationID = 23; break;
         case "ForlornHope": var OperationID = 22; break;
