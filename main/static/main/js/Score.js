@@ -33,7 +33,7 @@ function CountScore() {
     var ExcelText = "День;До сброса;После сброса"
     var YesterdayScore = TotalScore;
     var Day = 0;
-    console.log(MaxOperationScore)
+
     switch (Operation) {
         case "Duplexity": var OperationID = 23; break;
         case "ForlornHope": var OperationID = 22; break;
@@ -78,13 +78,13 @@ function CountScore() {
     CreateTable("День", "До сброса", "После сброса")
 
     while (TotalScore != MaxScore) {
-        TotalScore += Score;
         TotalScore = Decrease(TotalScore, KoefOP);
+        TotalScore += Score;
         AfterReset = Math.ceil(TotalScore / (1 - KoefOP / 100));
-
+        Day += 1;
         if (YesterdayScore == TotalScore || Day > 200)
             break;
-        Day += 1;
+        
 
         CreateTable(Day, AfterReset, TotalScore)
         ExcelText += "\n" + Day + ";" + AfterReset + ";" + TotalScore;

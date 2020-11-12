@@ -169,5 +169,4 @@ var CritterCannonWeight = 14;
 var KoefOP = 5;
 var ScoreList = new Array(40, 60, 85, 115, 150, 185, 225, 265, 310, 360, 415, 475, 540, 610, 690, 780, 880, 990, 1110, 1250, 1410, 1600, 1820, 2160);
 var ScoreMax = new Array(800, 1200, 1700, 2300, 3000, 3700, 4500, 5300, 6200, 7200, 8300, 9500, 10800, 12200, 13800, 15600, 17600, 19800, 22200, 25000, 28200, 32000, 36400, 43200);
-
-var MaxOperationScore = ScoreMax[-1] + ScoreList[-1];
+var MaxOperationScore = ScoreList[ScoreList.length - 1] + ScoreMax[ScoreMax.length - 1];
