@@ -1,4 +1,6 @@
-EnergyResField = document.getElementById("EnergyResField")
+document.getElementById("EnergyBtn").classList.add("btn-activ");
+
+var EnergyResField = document.getElementById("EnergyResField")
 
 function СountEnergy() {
     var GunboatLevel = Number(document.getElementById("GunboatLevel").value);
@@ -272,3 +274,5 @@ function Color(id, color) {
     setTimeout(ChargeColor, 100)
     ChargeColor()
 }
+
+MaxEnergy()

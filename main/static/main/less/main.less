@@ -48,6 +48,8 @@ video {
 
 input, select {outline:none;}
 
+input {padding-left: 0.5rem;}
+
 .header {
 	padding-top: 1rem;
 	text-align: center;
@@ -98,6 +100,13 @@ input, select {outline:none;}
 		background: -webkit-linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
 		background: linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
 	}
+}
+
+.btn-activ {
+	color: darken(@block-text, 10%);
+	background: @bgc-2-dark;
+	background: -webkit-linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
+	background: linear-gradient(to bottom, @bgc-2-dark, @bgc-3-dark);
 }
 
 .button {
@@ -292,7 +301,7 @@ input, select {outline:none;}
 	table {
 		width: 100%;
 		td {
-			padding-left: 3rem;
+			padding-left: 2rem;
 			border: 1px solid @table-border;
 		}
 	}

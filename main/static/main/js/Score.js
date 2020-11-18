@@ -1,18 +1,23 @@
-ScoreResField = document.getElementById("ScoreResField");
+document.getElementById("ScoreBtn").classList.add("btn-activ");
+
+var ScoreResField = document.getElementById("ScoreResField");
+
 
 function Decrease(Num, Koef) {return Math.ceil(Num * (1 - Koef / 100))}
 
 
-function CreateTable(Day, BeforeReset, AfterReset) {
+function CreateTable(Day, BeforeReset, AfterReset, Duble) {
     var table = document.getElementById("ScoreTable");
     var row = table.insertRow(Day);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
 
     cell1.innerHTML = Day;
     cell2.innerHTML = BeforeReset;
     cell3.innerHTML = AfterReset;
+    cell4.innerHTML = Duble;
 }
 
 
@@ -30,9 +35,14 @@ function ClearTable() {
 function CountScore() {
     var TotalScore = Number(document.getElementById("TotalScore").value);
     var Operation = document.getElementById("Operations").value;
-    var ExcelText = "День;До сброса;После сброса"
+    var ExcelText = "День;После сброса;После оп;Дубль"
     var YesterdayScore = TotalScore;
+    var AfterReset = Decrease(TotalScore, KoefOP);
+    var BeforeReset;
+    var Duble;
     var Day = 0;
+
+    ZeroDel("TotalScore")
 
     switch (Operation) {
         case "Duplexity": var OperationID = 23; break;
@@ -75,20 +85,22 @@ function CountScore() {
 
     ClearTable()
 
-    CreateTable("День", "До сброса", "После сброса")
+    CreateTable("День", "После сброса", "После оп", "Дубль")
 
     while (TotalScore != MaxScore) {
         TotalScore = Decrease(TotalScore, KoefOP);
+        BeforeReset = TotalScore;
         TotalScore += Score;
-        AfterReset = Math.ceil(TotalScore / (1 - KoefOP / 100));
+        AfterReset = TotalScore;
+        Duble = AfterReset + Score;
         Day += 1;
+
+        CreateTable(Day, BeforeReset, AfterReset, Duble)
+        ExcelText += "\n" + Day + ";" + BeforeReset + ";" + AfterReset + ";" + Duble;
+
         if (YesterdayScore == TotalScore || Day > 200)
             break;
         
-
-        CreateTable(Day, AfterReset, TotalScore)
-        ExcelText += "\n" + Day + ";" + AfterReset + ";" + TotalScore;
-
         YesterdayScore = TotalScore;
     }
     if (TotalScore >= MaxScore)
@@ -96,7 +108,6 @@ function CountScore() {
     ScoreResField.innerHTML = "Максимальные очки (" + MaxScore + ") через " + Day + " " + Days(Day);
     return ExcelText
 }
-CountScore()
 
 
 function ScoreClear() {
@@ -111,3 +122,5 @@ function DownloadExcel () {
     Link.href = "data:text/csv;charset=utf-8," + encodeURIComponent('\ufeff' + CountScore());
     Link.click();
 }
+
+CountScore()

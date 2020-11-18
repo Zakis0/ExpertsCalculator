@@ -32,6 +32,9 @@ input,
 select {
   outline: none;
 }
+input {
+  padding-left: 0.5rem;
+}
 .header {
   padding-top: 1rem;
   text-align: center;
@@ -78,6 +81,12 @@ select {
   background: linear-gradient(to bottom, #48b3da, #19517e);
 }
 .btn:hover {
+  color: #dfd049;
+  background: #3b92b2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3b92b2), to(#143f62));
+  background: linear-gradient(to bottom, #3b92b2, #143f62);
+}
+.btn-activ {
   color: #dfd049;
   background: #3b92b2;
   background: -webkit-gradient(linear, left top, left bottom, from(#3b92b2), to(#143f62));
@@ -288,7 +297,7 @@ select {
   width: 100%;
 }
 .Table table td {
-  padding-left: 3rem;
+  padding-left: 2rem;
   border: 1px solid #000000;
 }
 .hidden {

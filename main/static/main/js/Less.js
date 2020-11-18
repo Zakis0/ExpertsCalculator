@@ -1,6 +1,8 @@
-LessEnergyResField = document.getElementById("LessEnergyResField");
-LessHealthField = document.getElementById("LessHealthField");
-LessDamageResField = document.getElementById("LessDamageResField");
+document.getElementById("LessBtn").classList.add("btn-activ");
+
+var LessEnergyResField = document.getElementById("LessEnergyResField");
+var LessHealthField = document.getElementById("LessHealthField");
+var LessDamageResField = document.getElementById("LessDamageResField");
 
 
 function LessСountEnergy() {
@@ -21,24 +23,6 @@ function LessСountEnergy() {
 
     var ScorcherNum = Number(document.getElementById("ScorcherNum").innerHTML.substring(1));
     var BombardierNum = Number(document.getElementById("BombardierNum").innerHTML.substring(1));
-
-
-    if (EnergyBoost < 0) {
-        EnergyBoost = 0;
-        document.getElementById("EnergyBoost").value = 0;
-    }
-    if (GunboatLevel < 1) {
-        GunboatLevel = 1;
-        document.getElementById("GunboatLevel").value = 1;
-    }
-    if (GunboatLevel > GunboatLevelMax) {
-        GunboatLevel = GunboatLevelMax;
-        document.getElementById("GunboatLevel").value = GunboatLevelMax;
-    }
-    if (EnergyBoost > 900) {
-        EnergyBoost = 900;
-        document.getElementById("EnergyBoost").value = 900;
-    }
 
 
     var ArtilleryEnd = ((2 * Artillery + ArtilleryCoeff * (ArtilleryNum - 1)) * ArtilleryNum / 2);
@@ -99,23 +83,6 @@ function LessCountDamage() {
     var BuildingHealthBoost = Number(document.getElementById("BuildingHealthBoost").value);
 
 
-    List0 = new Array("TroopsNum", "ShockTime", "BattleOrdersLevel", "Shield", "BattleOrdersLevel");
-
-    for (var L0 = 0; L0 < List0.length; L0++) {
-        var Value0 = document.getElementById(List0[L0]).value;
-        if (Value0 < 0 || Value0 == "")
-            document.getElementById(List0[L0]).value = 0;
-    }
-    if (TroopsLevel < 1 || TroopsLevel == "") {
-        TroopsLevel = 1;
-        document.getElementById("TroopsLevel").value = 1;
-    }
-    if (BaseHealth < 0 || BaseHealth == "") {
-        BaseHealth = StartBaseHealth;
-        document.getElementById("BaseHealth").value = StartBaseHealth;
-    }
-
-
     switch (Troops) {
         case "TroopZooka":
             var TroopsAttackDamage = ZooksAttackDamage;
@@ -151,24 +118,7 @@ function LessCountDamage() {
 
     var TroopsNumMax = Math.floor(LandingCraftCapacity / TroopsWeight) * LandingCraftNum;
 
-    if (BattleOrdersLevel > BattleOrdersLevelMax) {
-        BattleOrdersLevel = BattleOrdersLevelMax;
-        document.getElementById("BattleOrdersLevel").value = BattleOrdersLevelMax;
-    }
-    if (BaseHealth > MaxBaseHealth) {
-        BaseHealth = MaxBaseHealth;
-        document.getElementById("BaseHealth").value = MaxBaseHealth;
-    }
-    ListMax = new Array("ShockTime", "DamageBoost", "BuildingHealthBoost", "Shield");
 
-    for (var Max = 0; Max < ListMax.length; Max++) {
-        var Input = document.getElementById(ListMax[Max]);
-        if (Input.value*1 > Input.max*1) {
-            Input.value = Input.max;
-        }
-    }
-
-    
     // Рассчёт урона воинов
     var TroopsDamage = TroopsAttackDamage[TroopsLevel - 1] * TroopsNum
 
@@ -206,8 +156,8 @@ function LessCountDamage() {
         if (ShockTime > 2.5) {
             BurnDamageFinish += BurnDamageEnd * BurnTime
         
-            if (ShockTime > 235)
-                BurnDamageFinish += BurnDamageEnd * (240 - ShockTime) * 2
+            if (ShockTime > BattleTime - 5)
+                BurnDamageFinish += BurnDamageEnd * (BattleTime - ShockTime) * 2
             else
                 BurnDamageFinish += BurnDamageEnd * 10
         }
@@ -296,9 +246,6 @@ function LessClear() {
     LessCountDamage()
 }
 
-LessСountEnergy()
-LessCountDamage()
-LessClear()
 
 function Plus(Block, index=0) {
     Block = document.getElementById(Block.id)
@@ -390,3 +337,83 @@ function SelectTroop(id) {
     Img.src = "/static/main/img/Troops/" + Src + ".png";
     LessChange(TroopsNumMax, TroopsLevelMax)
 }
+
+
+function CheckCorrect () {
+    var GunboatLevel = Number(document.getElementById("GunboatLevel").value);
+    var EnergyBoost = Number(document.getElementById("EnergyBoost").value);
+
+    var Troops = document.getElementById("Troop").classList.value;
+    var TroopsNum = Number(document.getElementById("TroopsNum").value);
+    var TroopsLevel = Number(document.getElementById("TroopsLevel").value);
+    var ShockTime = Number(document.getElementById("ShockTime").value);
+    var DamageBoost = Number(document.getElementById("DamageBoost").value);
+    var BattleOrdersLevel = Number(document.getElementById("BattleOrdersLevel").value);
+
+    var BaseHealth = Number(document.getElementById("BaseHealth").value);
+    var Shield = Number(document.getElementById("Shield").value);
+    var BuildingHealthBoost = Number(document.getElementById("BuildingHealthBoost").value);
+
+    var TroopsNumMax = LessCountDamage()[0];
+    var TroopsLevelMax = LessCountDamage()[1];
+
+
+    IfMore("GunboatLevel", GunboatLevel, GunboatLevelMax);
+    IfMore("EnergyBoost", EnergyBoost, 900);
+
+    var ZeroDelList = new Array("EnergyBoost", "GunboatLevel", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "Shield", "BuildingHealthBoost")
+    for (var input = 0; input < ZeroDelList.length; input++)
+        ZeroDel(ZeroDelList[input])
+
+    LessСountEnergy()
+
+
+    ListLess0 = new Array("EnergyBoost", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "BuildingHealthBoost", "Shield");
+    for (var i = 0; i < ListLess0.length; i++) {
+        var Value = document.getElementById(ListLess0[i]).value;
+        IfLess(ListLess0[i], Value, 0);
+    }
+    ListLess1 = new Array("GunboatLevel", "TroopsLevel");
+    for (var i = 0; i < ListLess1.length; i++) {
+        var Value = document.getElementById(ListLess1[i]).value;
+        IfLess(ListLess1[i], Value, 1);
+    }
+    ListMore900 = new Array("EnergyBoost", "DamageBoost");
+    for (var i = 0; i < ListMore900.length; i++) {
+        var Value = document.getElementById(ListMore900[i]).value;
+        IfMore(ListMore900[i], Value, 900);
+    }
+    ListMore9900 = new Array("Shield", "BuildingHealthBoost");
+    for (var i = 0; i < ListMore9900.length; i++) {
+        var Value = document.getElementById(ListMore9900[i]).value;
+        IfMore(ListMore9900[i], Value, 9900);
+    }
+
+
+    IfMore("TroopsLevel", TroopsLevel, TroopsLevelMax);
+    IfMore("TroopsNum", TroopsNum, TroopsNumMax);
+    IfMore("ShockTime", ShockTime, BattleTime);
+    IfMore("BattleOrdersLevel", BattleOrdersLevel, BattleOrdersLevelMax);
+
+    IfLess("BaseHealth", BaseHealth, 0, StartBaseHealth);
+    IfMore("BaseHealth", BaseHealth, MaxBaseHealth);
+
+
+    // ListMax = new Array("ShockTime", "DamageBoost", "BuildingHealthBoost", "Shield");
+    // for (var Max = 0; Max < ListMax.length; Max++) {
+    //     var Input = document.getElementById(ListMax[Max]);
+    //     if (Input.value > Input.max) {
+    //         Input.value = Input.max;
+    //     }
+    // }
+
+    LessCountDamage()
+}
+
+var Inputs = document.querySelectorAll('input')
+for (var i = 0; i < Inputs.length; i++)
+    Inputs[i].addEventListener("input", CheckCorrect);
+
+LessСountEnergy()
+LessCountDamage()
+LessMax()

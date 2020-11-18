@@ -1,12 +1,15 @@
+// Boom Beach
+var PowerCore = 200000;
+var LandingCraftNum = 8;
+var BattleTime = 240;
+
 var SpeedBoostMin = -75;
 // База
 var StartBaseHealth = 10000;
 var MaxBaseHealth = 220000;
-var PowerCore = 200000;
 
 // Лодки
 var LandingCraftCapacity = 28;
-var LandingCraftNum = 8;
 
 // Базовые значения
 var Building = 3;

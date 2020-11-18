@@ -1,4 +1,6 @@
-DamageResField = document.getElementById("DamageResField");
+document.getElementById("DamageBtn").classList.add("btn-activ");
+
+var DamageResField = document.getElementById("DamageResField");
 
 function CountDamage() {
     // Войска
@@ -217,8 +219,8 @@ function CountDamage() {
         if (ShockTime > 2.5)
             BurnDamageFinish += BurnDamageEnd * BurnTime;
         
-            if (ShockTime > 235)
-                BurnDamageFinish += BurnDamageEnd * (240 - ShockTime) * 2;
+            if (ShockTime > BattleTime - 5)
+                BurnDamageFinish += BurnDamageEnd * (BattleTime - ShockTime) * 2;
             else
                 BurnDamageFinish += BurnDamageEnd * 10;
 
@@ -240,7 +242,7 @@ function CountDamage() {
 
     
     // Установка итогового текста
-    DamageResField.innerHTML = "Скорость атаки: " + TroopsSpeed.toFixed(4) + "<br>Урон за залп: " + Rank(Math.ceil(TroopsDamageEnd)) + "<br>Урон в секунду: " + Rank(Math.ceil(TroopsDPSEnd)) + "<br>Урон за " + ShockTime + " с: " + Rank(Math.ceil(TroopsDamageTimeEnd)) + "<br>Здоровье базы: " + Rank(Math.ceil(BaseHealthEnd)) + "<br>Урона " + DamageRes + "<br>Затраты заряда: " + Rank(TotalEnergy);
+    DamageResField.innerHTML = "Скорость атаки: " + TroopsSpeed.toFixed(2) + "<br>Урон за залп: " + Rank(Math.ceil(TroopsDamageEnd)) + "<br>Урон в секунду: " + Rank(Math.ceil(TroopsDPSEnd)) + "<br>Урон за " + ShockTime + " с: " + Rank(Math.ceil(TroopsDamageTimeEnd)) + "<br>Здоровье базы: " + Rank(Math.ceil(BaseHealthEnd)) + "<br>Урона " + DamageRes + "<br>Затраты заряда: " + Rank(TotalEnergy);
      
     return new Array(TroopsNumMax, TroopsLevelMax)
 };
@@ -304,10 +306,6 @@ function ClearDamage() {
     DamageResField.innerHTML = "Скорость атаки: 0<br>Урон за залп: 0<br>Урон в секунду: 0<br>Урон за 0 с: 0<br>Здоровье базы: " + Rank(StartBaseHealth) + "<br>Урона не хватает<br>Затраты заряда: 0";
 }
 
-// Получение начальных значений
-CountDamage()
-ClearDamage()
-
 
 document.addEventListener('click', e => {
     var Button = document.getElementById("SelectedTroop");
@@ -356,3 +354,6 @@ function SelectTroop(id) {
     Img.src = "/static/main/img/Troops/" + Src + ".png";
     Change(TroopsNumMax, TroopsLevelMax)
 }
+
+CountDamage()
+MaxDamage()
