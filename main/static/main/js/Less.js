@@ -340,73 +340,27 @@ function SelectTroop(id) {
 
 
 function CheckCorrect () {
-    var GunboatLevel = Number(document.getElementById("GunboatLevel").value);
-    var EnergyBoost = Number(document.getElementById("EnergyBoost").value);
-
-    var Troops = document.getElementById("Troop").classList.value;
-    var TroopsNum = Number(document.getElementById("TroopsNum").value);
-    var TroopsLevel = Number(document.getElementById("TroopsLevel").value);
-    var ShockTime = Number(document.getElementById("ShockTime").value);
-    var DamageBoost = Number(document.getElementById("DamageBoost").value);
-    var BattleOrdersLevel = Number(document.getElementById("BattleOrdersLevel").value);
-
-    var BaseHealth = Number(document.getElementById("BaseHealth").value);
-    var Shield = Number(document.getElementById("Shield").value);
-    var BuildingHealthBoost = Number(document.getElementById("BuildingHealthBoost").value);
-
     var TroopsNumMax = LessCountDamage()[0];
     var TroopsLevelMax = LessCountDamage()[1];
 
+    ZeroDel(new Array("EnergyBoost", "GunboatLevel", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "Shield", "BuildingHealthBoost"))
 
-    IfMore("GunboatLevel", GunboatLevel, GunboatLevelMax);
-    IfMore("EnergyBoost", EnergyBoost, 900);
+    LimitCorrect("Less", new Array("EnergyBoost", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "BuildingHealthBoost", "Shield"), 0)
+    LimitCorrect("Less", new Array("GunboatLevel", "TroopsLevel"), 1)
+    LimitCorrect("More", new Array("EnergyBoost", "DamageBoost"), 900)
+    LimitCorrect("More", new Array("Shield", "BuildingHealthBoost"), 9900)
 
-    var ZeroDelList = new Array("EnergyBoost", "GunboatLevel", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "Shield", "BuildingHealthBoost")
-    for (var input = 0; input < ZeroDelList.length; input++)
-        ZeroDel(ZeroDelList[input])
+    LimitCorrect("More", new Array("GunboatLevel"), GunboatLevelMax)
+
+    LimitCorrect("More", new Array("TroopsLevel"), TroopsLevelMax)
+    LimitCorrect("More", new Array("TroopsNum"), TroopsNumMax)
+    LimitCorrect("More", new Array("ShockTime"), BattleTime)
+    LimitCorrect("More", new Array("BattleOrdersLevel"), BattleOrdersLevelMax)
+
+    LimitCorrect("Less", new Array("BaseHealth"), 0, StartBaseHealth)
+    LimitCorrect("More", new Array("BaseHealth"), MaxBaseHealth)
 
     LessСountEnergy()
-
-
-    ListLess0 = new Array("EnergyBoost", "TroopsNum", "ShockTime", "DamageBoost", "BattleOrdersLevel", "BuildingHealthBoost", "Shield");
-    for (var i = 0; i < ListLess0.length; i++) {
-        var Value = document.getElementById(ListLess0[i]).value;
-        IfLess(ListLess0[i], Value, 0);
-    }
-    ListLess1 = new Array("GunboatLevel", "TroopsLevel");
-    for (var i = 0; i < ListLess1.length; i++) {
-        var Value = document.getElementById(ListLess1[i]).value;
-        IfLess(ListLess1[i], Value, 1);
-    }
-    ListMore900 = new Array("EnergyBoost", "DamageBoost");
-    for (var i = 0; i < ListMore900.length; i++) {
-        var Value = document.getElementById(ListMore900[i]).value;
-        IfMore(ListMore900[i], Value, 900);
-    }
-    ListMore9900 = new Array("Shield", "BuildingHealthBoost");
-    for (var i = 0; i < ListMore9900.length; i++) {
-        var Value = document.getElementById(ListMore9900[i]).value;
-        IfMore(ListMore9900[i], Value, 9900);
-    }
-
-
-    IfMore("TroopsLevel", TroopsLevel, TroopsLevelMax);
-    IfMore("TroopsNum", TroopsNum, TroopsNumMax);
-    IfMore("ShockTime", ShockTime, BattleTime);
-    IfMore("BattleOrdersLevel", BattleOrdersLevel, BattleOrdersLevelMax);
-
-    IfLess("BaseHealth", BaseHealth, 0, StartBaseHealth);
-    IfMore("BaseHealth", BaseHealth, MaxBaseHealth);
-
-
-    // ListMax = new Array("ShockTime", "DamageBoost", "BuildingHealthBoost", "Shield");
-    // for (var Max = 0; Max < ListMax.length; Max++) {
-    //     var Input = document.getElementById(ListMax[Max]);
-    //     if (Input.value > Input.max) {
-    //         Input.value = Input.max;
-    //     }
-    // }
-
     LessCountDamage()
 }
 

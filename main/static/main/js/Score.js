@@ -42,7 +42,7 @@ function CountScore() {
     var Duble;
     var Day = 0;
 
-    ZeroDel("TotalScore")
+    CreateTable("День", "После сброса", "После оп", "Дубль")
 
     switch (Operation) {
         case "Duplexity": var OperationID = 23; break;
@@ -73,19 +73,6 @@ function CountScore() {
 
     var Score = ScoreList[OperationID];
     var MaxScore = ScoreMax[OperationID];
-
-    if (TotalScore > MaxOperationScore) {
-        TotalScore = MaxOperationScore;
-        document.getElementById("TotalScore").value = MaxOperationScore;
-    }
-    if (TotalScore < 0 || TotalScore == "") {
-        TotalScore = 0;
-        document.getElementById("TotalScore").value = 0;
-    }
-
-    ClearTable()
-
-    CreateTable("День", "После сброса", "После оп", "Дубль")
 
     while (TotalScore != MaxScore) {
         TotalScore = Decrease(TotalScore, KoefOP);
@@ -122,5 +109,17 @@ function DownloadExcel () {
     Link.href = "data:text/csv;charset=utf-8," + encodeURIComponent('\ufeff' + CountScore());
     Link.click();
 }
+
+
+function CheckCorrect () {
+    ZeroDel(new Array("TotalScore"))
+    LimitCorrect("Less", new Array("TotalScore"), 0)
+    LimitCorrect("More", new Array("TotalScore"), MaxOperationScore)
+    CountScore()
+}
+var Inputs = document.querySelectorAll('input')
+for (var i = 0; i < Inputs.length; i++)
+    Inputs[i].addEventListener("input", CheckCorrect);
+
 
 CountScore()

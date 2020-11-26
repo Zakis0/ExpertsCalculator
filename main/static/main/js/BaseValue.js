@@ -2,6 +2,8 @@
 var PowerCore = 200000;
 var LandingCraftNum = 8;
 var BattleTime = 240;
+var MaxDestroyedBuildings = 200;
+var GunboatSpellsNumMax = 30;
 
 var SpeedBoostMin = -75;
 // База
@@ -159,6 +161,8 @@ var BarrageLevelMax = BarrageDamage.length
 var BrickDamage = new Array(0, 15, 17, 19, 22, 25, 30);
 var BrickSpeed = new Array(0, 40, 42, 45, 47, 50, 60);
 var BattleOrdersLevelMax = BrickDamage.length - 1;
+var BattleOrdersDuration = 7.5;
+var BattleOrdersNumMax = Math.ceil(BattleTime / BattleOrdersDuration);
 
 var BombardierWeight = 8;
 var MechWeight = 14;

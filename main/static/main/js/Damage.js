@@ -32,27 +32,6 @@ function CountDamage() {
     var BaseHealth = Number(document.getElementById("BaseHealth").value);
     var Shield = Number(document.getElementById("Shield").value);
 
-    List0 = new Array("TroopsNum", "ShockTime", "BattleOrdersNum", "BattleOrdersLevel", "ArtilleryNum", "BarrageNum", "BuildingHealthBoost", "DamageBoost", "ArtilleryBoost", "BarrageBoost", "Shield");
-    List1 = new Array("TroopsLevel", "BattleOrdersLevel", "ArtilleryLevel", "BarrageLevel");
-
-    for (var L0 = 0; L0 < List0.length; L0++) {
-        var Value0 = document.getElementById(List0[L0]).value;
-        if (Value0 < 0 || Value0 == "")
-            document.getElementById(List0[L0]).value = 0;
-    }
-    for (var L1 = 0; L1 < List1.length; L1++) {
-        var Value1 = document.getElementById(List1[L1]).value;
-        if (Value1 < 1 || Value1 == "")
-            document.getElementById(List1[L1]).value = 1;
-    }
-    if (BaseHealth < 0 || BaseHealth == "") {
-        BaseHealth = StartBaseHealth;
-        document.getElementById("BaseHealth").value = StartBaseHealth;
-    }
-    if (SpeedBoost < SpeedBoostMin) {
-        SpeedBoost = SpeedBoostMin;
-        document.getElementById("SpeedBoost").value = SpeedBoostMin;
-    }
 
     switch (Troops) {
         case "TroopZooka":
@@ -125,38 +104,6 @@ function CountDamage() {
     if (Troops != "TroopCritter")
         var TroopsNumMax = Math.floor(LandingCraftCapacity / TroopsWeight) * LandingCraftNum;
 
-    if (TroopsLevel > TroopsLevelMax) {
-        TroopsLevel = TroopsLevelMax;
-        document.getElementById("TroopsLevel").value = TroopsLevelMax;
-    }
-    if (TroopsNum > TroopsNumMax) {
-        TroopsNum = TroopsNumMax;
-        document.getElementById("TroopsNum").value = TroopsNumMax;
-    }
-    if (ArtilleryLevel > ArtilleryLevelMax) {
-        ArtilleryLevel = ArtilleryLevelMax;
-        document.getElementById("ArtilleryLevel").value = ArtilleryLevelMax;
-    }
-    if (BarrageLevel > BarrageLevelMax) {
-        BarrageLevel = BarrageLevelMax;
-        document.getElementById("BarrageLevel").value = BarrageLevelMax;
-    }
-    if (BattleOrdersLevel > BattleOrdersLevelMax) {
-        BattleOrdersLevel = BattleOrdersLevelMax;
-        document.getElementById("BattleOrdersLevel").value = BattleOrdersLevelMax;
-    }
-    if (BaseHealth > MaxBaseHealth) {
-        BaseHealth = MaxBaseHealth;
-        document.getElementById("BaseHealth").value = MaxBaseHealth;
-    }
-    ListMax = new Array("ShockTime", "DamageBoost", "SpeedBoost", "BattleOrdersNum", "ArtilleryNum", "ArtilleryBoost", "BarrageNum", "BarrageBoost", "BuildingHealthBoost", "Shield");
-
-    for (var Max = 0; Max < ListMax.length; Max++) {
-        var Input = document.getElementById(ListMax[Max]);
-        if (Input.value*1 > Input.max*1) {
-            Input.value = Input.max;
-        }
-    }
     
     // Рассчёт урона воинов
     var TroopsDamage = TroopsAttackDamage[TroopsLevel - 1] * TroopsNum;
@@ -354,6 +301,43 @@ function SelectTroop(id) {
     Img.src = "/static/main/img/Troops/" + Src + ".png";
     Change(TroopsNumMax, TroopsLevelMax)
 }
+
+
+function CheckCorrect () {
+    var TroopsNumMax = CountDamage()[0];
+    var TroopsLevelMax = CountDamage()[1];
+
+    ZeroDel(new Array("TroopsNum", "ShockTime", "DamageBoost", "SpeedBoost", "BattleOrdersLevel", "BattleOrdersNum", "ArtilleryNum", "BarrageNum", "ArtilleryLevel", "BarrageLevel", "ArtilleryBoost", "BarrageBoost", "Shield", "BuildingHealthBoost"))
+
+    LimitCorrect("Less", new Array("TroopsNum", "SpeedBoost", "BattleOrdersNum", "ShockTime", "BattleOrdersLevel", "ArtilleryNum", "BarrageNum", "BuildingHealthBoost", "DamageBoost", "ArtilleryBoost", "BarrageBoost", "Shield"), 0)
+    LimitCorrect("Less", new Array("TroopsLevel", "BattleOrdersLevel", "ArtilleryLevel", "BarrageLevel"), 1)
+
+    
+
+    LimitCorrect("More", new Array("DamageBoost", "SpeedBoost", "ArtilleryBoost", "BarrageBoost"), 900)
+    LimitCorrect("More", new Array("Shield", "BuildingHealthBoost"), 9900)
+
+    LimitCorrect("More", new Array("TroopsLevel"), TroopsLevelMax)
+    LimitCorrect("More", new Array("TroopsNum"), TroopsNumMax)
+    LimitCorrect("More", new Array("ShockTime"), BattleTime)
+
+    LimitCorrect("More", new Array("BattleOrdersLevel"), BattleOrdersLevelMax)
+    LimitCorrect("More", new Array("BattleOrdersNum"), BattleOrdersNumMax)
+
+    LimitCorrect("More", new Array("ArtilleryLevel"), ArtilleryLevelMax)
+    LimitCorrect("More", new Array("BarrageLevel"), BarrageLevelMax)
+
+    LimitCorrect("More", new Array("ArtilleryNum", "BarrageNum"), GunboatSpellsNumMax)
+
+    LimitCorrect("Less", new Array("BaseHealth"), 0, StartBaseHealth)
+    LimitCorrect("More", new Array("BaseHealth"), MaxBaseHealth)
+
+    CountDamage()
+}
+
+var Inputs = document.querySelectorAll('input')
+for (var i = 0; i < Inputs.length; i++)
+    Inputs[i].addEventListener("input", CheckCorrect);
 
 CountDamage()
 MaxDamage()

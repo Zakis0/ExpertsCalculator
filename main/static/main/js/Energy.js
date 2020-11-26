@@ -44,31 +44,6 @@ function СountEnergy() {
     var RainMakerNum = Number(document.getElementById("RainMakerNum").innerHTML.substring(1));
     var CritterCannonNum = Number(document.getElementById("CritterCannonNum").innerHTML.substring(1));
     
-    List0 = new Array("EnergyBoost", "DestroyedBuildings");
-
-    for (var L0 = 0; L0 < List0.length; L0++) {
-        var Value0 = document.getElementById(List0[L0]).value;
-        if (Value0 < 0 || Value0 == "")
-            document.getElementById(List0[L0]).value = 0;
-    }
-    if (GunboatLevel < 1) {
-        GunboatLevel = 1;
-        document.getElementById("GunboatLevel").value = 1;
-    }
-
-    if (GunboatLevel > GunboatLevelMax) {
-        GunboatLevel = GunboatLevelMax;
-        document.getElementById("GunboatLevel").value = GunboatLevelMax;
-    }
-    if (EnergyBoost > 900) {
-        EnergyBoost = 900;
-        document.getElementById("EnergyBoost").value = 900;
-    }
-    if (DestroyedBuildings > 200) {
-        DestroyedBuildings = 200;
-        document.getElementById("DestroyedBuildings").value = 200;
-    }
-
 
     // Рассчёт стоимости использования способностей определённое количество раз
     // Артилерия
@@ -274,5 +249,23 @@ function Color(id, color) {
     setTimeout(ChargeColor, 100)
     ChargeColor()
 }
+
+
+function CheckCorrect () {
+    ZeroDel(new Array("GunboatLevel", "EnergyBoost", "DestroyedBuildings"))
+
+    LimitCorrect("Less", new Array("EnergyBoost", "DestroyedBuildings"), 0)
+    LimitCorrect("Less", new Array("GunboatLevel"), 1)
+
+    LimitCorrect("More", new Array("GunboatLevel"), GunboatLevelMax)
+    LimitCorrect("More", new Array("EnergyBoost"), 900)
+    LimitCorrect("More", new Array("DestroyedBuildings"), MaxDestroyedBuildings)
+    
+    СountEnergy()
+}
+
+var Inputs = document.querySelectorAll('input')
+for (var i = 0; i < Inputs.length; i++)
+    Inputs[i].addEventListener("input", CheckCorrect);
 
 MaxEnergy()
