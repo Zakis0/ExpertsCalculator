@@ -312,8 +312,6 @@ function CheckCorrect () {
     LimitCorrect("Less", new Array("TroopsNum", "SpeedBoost", "BattleOrdersNum", "ShockTime", "BattleOrdersLevel", "ArtilleryNum", "BarrageNum", "BuildingHealthBoost", "DamageBoost", "ArtilleryBoost", "BarrageBoost", "Shield"), 0)
     LimitCorrect("Less", new Array("TroopsLevel", "BattleOrdersLevel", "ArtilleryLevel", "BarrageLevel"), 1)
 
-    
-
     LimitCorrect("More", new Array("DamageBoost", "SpeedBoost", "ArtilleryBoost", "BarrageBoost"), 900)
     LimitCorrect("More", new Array("Shield", "BuildingHealthBoost"), 9900)
 
