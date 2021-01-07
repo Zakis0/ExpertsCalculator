@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-12">
-				<select id="Operations" class="SelectList" onchange="CountScore()">
+				<select id="Operations" title="Выбор операции" class="SelectList" onchange="CountScore()">
 					<option value="Duplexity">Дуплексность</option>
 					<option value="ForlornHope">Угасшая Надежда</option>
 					<option value="MassiveAttack">Массированная Атака</option>
@@ -37,7 +37,7 @@
 			<div class="col-md-6 col-12">
 				<div class="field ScoreInput">
 					<img src="{% static 'main/img/Icons/ForcePoint.png' %}" alt="Force Point">
-					<input id="TotalScore" type="number" value="0" min="0" max="80000">
+					<input id="TotalScore" title="Текущие очки опергруппы" type="number" value="0" min="0" max="80000">
 				</div>
 			</div>
 			<div class="col-md-6 col-8">
@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-md-6 col-4">
 				<div class="ScoreBtnBlock">
-					<button class="btn ScoreBtn ScoreClearBtn" type="button" onclick="ScoreClear()">Очистить</button>
+					<button class="btn ScoreBtn ScoreClearBtn" type="button" onclick="ScoreClear()">Сброс</button>
 				</div>
 			</div>
 			<div class="col-12">

@@ -9,19 +9,19 @@
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/Gunboat.png' %}" alt="Gunboat">
-					<input id="GunboatLevel" type="number" oninput="СountEnergy()" value="1" min="1" max="30">
+					<input id="GunboatLevel" title="Уровень канонерки" type="number" oninput="СountEnergy()" value="1" min="1" max="30">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img height="120" src="{% static 'main/img/Icons/Enegry.png' %}" alt="Energy Boost">
-					<input id="EnergyBoost" type="number" oninput="СountEnergy()" value="0" min="0" max="900">
+					<input id="EnergyBoost" title="Сумма процентов статуй на заряд канонерки" type="number" oninput="СountEnergy()" value="0" min="0" max="900">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/PowerCell.png' %}" alt="Destroyed Buildings">
-					<input id="DestroyedBuildings" type="number" oninput="СountEnergy()" value="0" min="0" max="200">
+					<input id="DestroyedBuildings" title="Количество уничтоженных зданий для получения заряда" type="number" oninput="СountEnergy()" value="0" min="0" max="200">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-12 col-6">
@@ -39,12 +39,12 @@
 		<div class="row">
 			<div class="col-6">
 				<div class="button-click">
-					<button class="btn" type="button" onclick="MaxEnergy()">MAX</button>
+					<button class="btn" title="Установить максимальные значения" type="button" onclick="MaxEnergy()">MAX</button>
 				</div>
 			</div>
 			<div class="col-6">
 				<div class="button-click">
-					<button class="btn" type="button" onclick="ClearEnergy()">Очистить</button>
+					<button class="btn" type="button" onclick="ClearEnergy()">Сброс</button>
 				</div>
 			</div>
 		</div>

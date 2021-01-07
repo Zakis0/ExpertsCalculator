@@ -23,12 +23,12 @@
 				<div class="row">
 					<div class="col-lg-12 col-6">
 						<div class="button-click">
-							<button class="btn top-btn" type="button" onclick="MaxDamage()">MAX</button>
+							<button class="btn top-btn" title="Установить максимальные значения" type="button" onclick="MaxDamage()">MAX</button>
 						</div>
 					</div>
 					<div class="col-lg-12 col-6">
 						<div class="button-click">
-							<button class="btn" type="button" onclick="ClearDamage()">Очистить</button>
+							<button class="btn" type="button" onclick="ClearDamage()">Сброс</button>
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 			<div class="col-xl-3 col-lg-4 col-6">
 			  	<div class="select">
 			  		<div id="Troop" class="TroopZooka"></div>
-			  		<button id="TroopsBtn" class="select-button btn" type="button"><img id="SelectedTroop" src="{% static 'main/img/Troops/ZookaIcon.png' %}" alt="Войска"></button>
+			  		<button id="TroopsBtn" class="select-button btn" type="button"><img id="SelectedTroop" title="Выбрать воина" src="{% static 'main/img/Troops/ZookaIcon.png' %}" alt="Войска"></button>
 			  		<div id="TroopsSelect" class="select-content hidden">
 			  			<div class="container">
 				  			<div class="row">
@@ -138,97 +138,97 @@
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img id="asd" src="{% static 'main/img/Icons/Level.png' %}" alt="Troops Level">
-					<input id="TroopsLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+					<input id="TroopsLevel" title="Уровень воина" type="number" oninput="CountDamage()" value="1" min="1" max="30">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/Troops.png' %}" alt="Troops Num">
-					<input id="TroopsNum" type="number" oninput="CountDamage()" value="0" min="0" max="500">
+					<input id="TroopsNum" title="Количество войск" type="number" oninput="CountDamage()" value="0" min="0" max="500">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/Clock.png' %}" alt="Shock Time">
-					<input id="ShockTime" type="number" oninput="CountDamage()" value="0" min="0" max="240">
+					<input id="ShockTime" title="За какое время рассчитывать суммарный урон" type="number" oninput="CountDamage()" value="0" min="0" max="240">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/Damage.png' %}" alt="Damage Boost">
-					<input id="DamageBoost" type="number" oninput="CountDamage()" value="0" min="0" max="900">
+					<input id="DamageBoost" title="Сумма процентов статуй на урон войск" type="number" oninput="CountDamage()" value="0" min="0" max="900">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/Speed.png' %}" alt="Speed Boost">
-					<input id="SpeedBoost" type="number" oninput="CountDamage()" value="0" min="-75" max="900">
+					<input id="SpeedBoost" title="Бонус к скорости войск" type="number" oninput="CountDamage()" value="0" min="-75" max="900">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/BattleOrdersLevel.png' %}" alt="Battle Orders Level">
-					<input id="BattleOrdersLevel" type="number" oninput="CountDamage()" value="1" min="1" max="10">
+					<input id="BattleOrdersLevel" title="Уровень боевых приказов у брик" type="number" oninput="CountDamage()" value="1" min="1" max="10">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-8 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/BattleOrdersNum.png' %}" alt="Battle Orders Num">
-					<input id="BattleOrdersNum" type="number" oninput="CountDamage()" value="0" min="0" max="32">
+					<input id="BattleOrdersNum" title="Количество используемых боевых приказов" type="number" oninput="CountDamage()" value="0" min="0" max="32">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/ArtilleryNum.png' %}" alt="Artillery Num">
-					<input id="ArtilleryNum" type="number" oninput="CountDamage()" value="0" min="0" max="30">
+					<input id="ArtilleryNum" title="Количество используемой артиллерии" type="number" oninput="CountDamage()" value="0" min="0" max="30">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/ArtilleryLevel.png' %}" alt="Artillery Level">
-					<input id="ArtilleryLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+					<input id="ArtilleryLevel" title="Уровень артиллерии" type="number" oninput="CountDamage()" value="1" min="1" max="30">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/ArtilleryBoost.png' %}" alt="Artillery Boost">
-					<input id="ArtilleryBoost" type="number" oninput="CountDamage()" value="0" min="0" max="900">
+					<input id="ArtilleryBoost" title="Бонус к урону артиллерии" type="number" oninput="CountDamage()" value="0" min="0" max="900">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/BarrageNum.png' %}" alt="BarrageNum">
-					<input id="BarrageNum" type="number" oninput="CountDamage()" value="0" min="0" max="30">
+					<input id="BarrageNum" title="Количество используемого обстрела" type="number" oninput="CountDamage()" value="0" min="0" max="30">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/BarrageLevel.png' %}" alt="Barrage Level">
-					<input id="BarrageLevel" type="number" oninput="CountDamage()" value="1" min="1" max="30">
+					<input id="BarrageLevel" title="Уровень обстрела" type="number" oninput="CountDamage()" value="1" min="1" max="30">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-4 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/BarrageBoost.png' %}" alt="BarrageBoost">
-					<input id="BarrageBoost" type="number" oninput="CountDamage()" value="0" min="0" max="200">
+					<input id="BarrageBoost" title="Бонус к урону обстрела" type="number" oninput="CountDamage()" value="0" min="0" max="200">
 				</div>
 			</div>
 			<div class="col-xl-5 col-12">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/PowerCore.png' %}" alt="Base Health">
-					<input id="BaseHealth" type="number" oninput="CountDamage()" step="1000" value="10000" min="10000" max="300000">
+					<input id="BaseHealth" title="Здоровье базы" type="number" oninput="CountDamage()" step="1000" value="10000" min="10000" max="300000">
 				</div>
 			</div>
 			<div class="col-xl-3 col-lg-4 col-6">
 				<div class="field">
 					<img class="BigImg" src="{% static 'main/img/Icons/Health.png' %}" alt="Building Health Boost">
-					<input id="BuildingHealthBoost" class="BigIuput" type="number" oninput="CountDamage()" value="0" min="0" max="9900">
+					<input id="BuildingHealthBoost" title="Сумма процентов статуй на здоровье зданий" class="BigIuput" type="number" oninput="CountDamage()" value="0" min="0" max="9900">
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-8 col-6">
 				<div class="field">
 					<img src="{% static 'main/img/Icons/ShieldGenerator.png' %}" alt="Shield">
-					<input id="Shield" class="BigIuput" type="number" oninput="CountDamage()" step="50" value="0" min="0" max="9900">
+					<input id="Shield" title="Сумма процентов щитов на базе. Если на базе 2 щита 2 уровня, то суммарный процент будет 200, т.к. каждый даёт 100% к здоровью базы" class="BigIuput" type="number" oninput="CountDamage()" step="50" value="0" min="0" max="9900">
 				</div>
 			</div>
 		</div>
