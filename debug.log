@@ -11660,3 +11660,6 @@ File C:\Users\Zakis\AppData\Local\Programs\Python\Python39\Lib\site-packages\dja
 "GET /static/main/img/Icons/ForcePoint.png HTTP/1.1" 200 52199
 "GET /Energy/ HTTP/1.1" 200 32804
 "GET /static/main/css/main.css HTTP/1.1" 304 0
+File D:\GitHub\ExpertsCalculator\ExpertsCalculator\settings.py previous mtime: 1607771980.9058826, current mtime: 1610007078.012525
+D:\GitHub\ExpertsCalculator\ExpertsCalculator\settings.py notified as changed. Signal results: [(<function translation_file_changed at 0x0000013985FF68B0>, None)].
+D:\GitHub\ExpertsCalculator\ExpertsCalculator\settings.py changed, reloading.
