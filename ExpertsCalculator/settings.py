@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'u0wll-6&@5^k=d$5#om!ls53i=qp3oyvub2p5o8!%^tr*gv35c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["expertscalculator.herokuapp.com", "127.0.0.1"]
 
